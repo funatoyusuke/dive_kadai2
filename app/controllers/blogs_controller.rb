@@ -73,4 +73,3 @@ class BlogsController < ApplicationController
        end
     end
 end
-
