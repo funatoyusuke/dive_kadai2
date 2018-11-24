@@ -1,0 +1,16 @@
+<h1>お気に入り一覧</h1>
+
+
+<div class="container">
+  <% @favorites_blogs.each do |favo| %>
+    <div class="row">
+       <div class="index_title">
+         <%= favo.title %>
+       </div>
+       <div class="index_content">
+         <%= favo.content %>
+       </div>
+    </div>
+<% end %>
+<br>
+<%= link_to 'プロフィール画面', user_path(current_user.id), class: 'btn btn-default' %>

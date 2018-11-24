@@ -1,25 +1,29 @@
-<%= form_with(model: @blog, local: true ,url: confirm_blogs_path ) do |form| %>
+<div class="container">
+<%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
       <ul>
-
       <% @blog.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="blog_title">
-    <%= form.label :タイトル %>
-    <%= form.text_field :title %>
+      <div>
+       <%= form.label :タイトル %><br>
+       <%= form.text_field :title,:size=>"90" %>
+      </div>
+      <div>
+       <%= form.label :内容 %><br>
+       <%= form.text_area :content ,:size=>"90x20" %>
+      </div>
+  <div class="field">
+    <%= form.label :画像 %>
+    <%= image_tag(@blog.image.url , :size =>'320x480') if @blog.image.url %>
+    <%= form.file_field :image %>
   </div>
-  <div class="blog_title">
-    <%= form.label :内容 %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit name="送信する" %>
+<%= form.submit name="送信する" %>
 <% end %>
-
+</div>
 <%= link_to "ブログ一覧画面にもどる", blogs_path %>

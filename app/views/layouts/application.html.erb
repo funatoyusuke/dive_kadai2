@@ -3,12 +3,64 @@
   <head>
     <title>Kadai2</title>
     <%= csrf_meta_tags %>
-
+    
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    
+    
+  <div class="container-fluid">
+       
+    <header class = "header">
+      <nav class="navbar navbar-default">
+          <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+               <span class="sr-only">Twitterクローン</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+          </div>
+    
+          <div id="gnavi" class="collapse navbar-collapse">
+             <ul class="nav navbar-nav">
+               <li><a href="/blogs/top" >Top</a></li>
+               
+               <% if logged_in? %>
+                 <li><%= link_to "新規投稿", new_blog_path(current_user.id)%></li>
+                 <!--<li><%= link_to "ブログ一覧", blogs_path(current_user.id), method: :delete%></li>-->
+               <% end %>
+          </div>
+      </nav>
+    </header>
+    
+    
+    <div id="sign">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}")%>
+    <% end %>
+    
+    <% if logged_in? %>
+    <ul>
+      <li><%= link_to "プロフィール",user_path(current_user.id), class: 'btn btn-default'%></li>
+      <li><%= link_to "ログアウト", session_path(current_user.id),method: :delete, class: 'btn btn-default'%></li>
+    <% else %>
+      <li><%= link_to "会員登録", new_user_path, class: 'btn btn-default'%></li>
+      <li><%= link_to "ログイン", new_session_path, class: 'btn btn-default'%></li>
+    <% end %>
+    </ul>
+    </div>
+    
+    
     <%= yield %>
-  </body>
+    
+    <div class="push"></div>
+    
+    <footer  id="footer" class="col-sm-12">
+      <p>2018年6月期funato</p>
+    </footer>
+  </div>
 </html>

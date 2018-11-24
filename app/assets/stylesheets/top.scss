@@ -1,0 +1,35 @@
+#header_img{
+    padding: 50px;
+    width:100%;
+    margin:auto;
+}
+
+img {
+    vertical-align: middle;
+    width: 100%;
+}
+
+li{
+    list-style:none;
+}
+ul{
+    padding:0;
+}
+
+#top_content{
+  margin-top:15px;
+}
+
+.contents li{
+    background-color:white;
+    color:black;
+    padding:10% 10%;
+    border: solid 2px;
+    border-color: #2c3e50;
+    margin:2px;
+    
+}
+
+.push_top{
+    height: 60px;
+}

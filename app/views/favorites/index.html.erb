@@ -1,0 +1,9 @@
+<h1>お気に入り一覧</h1>
+
+    <% @favo.each do |blog| %>
+       <%= blog.title %><br>
+       <%= blog.content %>
+    <% end %>
+<br>
+
+<%= link_to '投稿一覧', blogs_path, class: 'btn btn-default' %>

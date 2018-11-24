@@ -1,0 +1,9 @@
+<!--ログイン成功時のページ-->
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+
+
+<%=link_to "新規投稿",new_blog_path    %>
+<%=link_to "ブログ一覧", blogs_path   %>
+<li><%= link_to "お気に入り一覧", :controller => "users",:action => "favo", class: 'btn btn-default'%></li>

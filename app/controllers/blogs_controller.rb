@@ -1,13 +1,19 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: [:show, :edit, :update ,:destroy]
+    before_action :must_login, only:[:edit,:destroy]
+    
+    def top
+    end
     
     def index
         @blogs = Blog.all
+        logged_in?
     end
     
     def show
+        @favorite = current_user.favorites.find_by(blog_id: @blog.id)
     end
-    
+
     def new
       @blogs = Blog.all
       @blog = Blog.new
@@ -19,7 +25,10 @@ class BlogsController < ApplicationController
     
     def create
         @blog = Blog.create(blog_params)
+        @blog.user_id = current_user.id
+        
         if @blog.save
+            ContactMailer.contact_mail(@blog).deliver
             redirect_to blogs_path, notice: "ブログを作成しました"
         else
             render 'new'
@@ -44,15 +53,24 @@ class BlogsController < ApplicationController
     
     def confirm
         @blog = Blog.new(blog_params)
+        @blog.user_id = current_user.id
         render :new if @blog.invalid?
     end
     
+    
     private
     def blog_params
-        params.require(:blog).permit(:title, :content)
+        params.require(:blog).permit(:title, :content, :image, :image_cache)
     end
     
     def set_blog
         @blog = Blog.find(params[:id])
     end
+    
+    def must_login
+       if current_user.nil?
+         redirect_to blogs_path, notice: "ログインしてください"
+       end
+    end
 end
+
