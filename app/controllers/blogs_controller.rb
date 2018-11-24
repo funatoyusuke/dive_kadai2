@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: [:show, :edit, :update ,:destroy]
-    before_action :must_login, only:[:edit,:destroy]
-    
+    before_action :must_login, only:[:show, :edit,:destroy]
+    before_action :must_login, except: [:top]
     def top
     end
     
@@ -69,7 +69,7 @@ class BlogsController < ApplicationController
     
     def must_login
        if current_user.nil?
-         redirect_to blogs_path, notice: "ログインしてください"
+         redirect_to root_path, notice: "ログインしてください"
        end
     end
 end

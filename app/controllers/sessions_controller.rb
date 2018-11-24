@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
-  #newアクション  ログインページを出力
-  #createアクション  セッションを作成
-  #destroyアクション  セッションを破棄
+  #skip_before_action :user_logged_in? 
   
   def new
   end
