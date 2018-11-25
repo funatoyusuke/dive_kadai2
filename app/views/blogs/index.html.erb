@@ -1,25 +1,56 @@
 <h1>ブログ一覧</h1>
    
-   <div class="container">
+   <div class="contents">
+   <div class="row">
+      
+    <div class="col-md-6">
+      <div class="row_B">
+        <h3>ブログ一覧の見方<h3>
+        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+      </div>
+    </div>
+      
+    <div class="col-md-6">
+         <ul class="row_A" id="top_content">
+           <li class="col-sm-12 col-md-5">説明１</li>
+           <li class="col-sm-12 col-md-5">説明２</li>
+           <li class="col-sm-12 col-md-5">説明３</li>
+           <li class="col-sm-12 col-md-5">説明４</li>
+         </ul>
+    </div>
+
+    
+   </div>
+  </div>
+   
+   
+   
+   <div class="contents">
    <% @blogs.each do |blog| %>
      <div class="row">
-        <div class="index_title">
-          <%= blog.title %>
-        </div>
+      <div class="col-sm-12">
+         <div class="index_title">
+           <%= blog.title %>
+         </div>
        
-        <div class="index_content">
-          <%= blog.content %>
-        </div>
+         <div class="index_content">
+           <%= blog.content %>
+         </div>
+        
+         <%= link_to '詳細確認',blog_path(blog.id), class: 'btn btn-info' %>
+       
+        <% if blog.user_id == current_user.id %>
+         <%= link_to "編集する", edit_blog_path(blog.id) ,data: { confirm: '本当に編集していいですか？'}, class: 'btn btn-success'%>
+         <%= link_to '削除する', blog_path(blog.id), method: :delete,data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger'%>
+        <% end %>
       </div>
-       
-       <%= link_to '詳細確認',blog_path(blog.id), class: 'btn btn-info' %>
-       
-      <% if blog.user_id == current_user.id %>
-       <%= link_to "編集する", edit_blog_path(blog.id) ,data: { confirm: '本当に編集していいですか？'}, class: 'btn btn-success'%>
-       <%= link_to '削除する', blog_path(blog.id), method: :delete,data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger'%>
-      <% end %>  
+      </div>
    <% end %>
-
+   
+</div>
+</div>
 <br><br>
 <%= link_to '新しくブログを投稿する', new_blog_path, class: 'btn btn-default' %>
-</div>
