@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post 'confirm'
     end
   end
-  resources :users, only: [:new, :create, :show]
+  resources :users
   get '/users/favo/:id', to:'users#favo'
   resources :sessions, only: [:new, :create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]

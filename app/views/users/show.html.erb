@@ -1,9 +1,14 @@
 <!--ログイン成功時のページ-->
 <h1><%= @user.name %>のページ</h1>
 
-<p>メールアドレス: <%= @user.email %></p>
 
+  <p>メールアドレス: <%= @user.email %></p>
+
+
+   <strong>アイコン</strong>
+  <div id="icon"><%= image_tag(@user.image.url, :size =>'180x180') if @user.image.url %></div>
 
 <%=link_to "新規投稿",new_blog_path    %>
 <%=link_to "ブログ一覧", blogs_path   %>
 <li><%= link_to "お気に入り一覧", :controller => "users",:action => "favo", class: 'btn btn-default'%></li>
+<%=link_to "アイコン登録",edit_user_path  %>
