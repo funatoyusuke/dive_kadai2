@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete  'logout',  to: 'sessions#destroy'
 
 
+
   resources :blogs do
     collection do
       get 'top'
