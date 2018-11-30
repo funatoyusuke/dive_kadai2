@@ -7,8 +7,8 @@
 
   <p>タイトル:<%= @blog.title %></p>
   <p>本文:<%= @blog.content %></p>
-  <p><%= image_tag(@blog.image.url ,:size =>'340x340') if @blog.image.url %></p>
-  <%= form.hidden_field :image_cache %>
+  <p><%#= image_tag(@blog.image.url ,:size =>'340x340') if @blog.image.url %></p>
+  <%#= form.hidden_field :image_cache %>
   
   
   <%= form.submit  "登録する" %>
