@@ -19,9 +19,9 @@
        <%= form.text_area :content ,:size=>"90x20" %>
       </div>
   <div class="field">
-    <%#= form.label :画像 %>
-    <%#= image_tag(@blog.image.url , :size =>'320x320') if @blog.image.url %>
-    <%#= form.file_field :image %>
+    <%= form.label :画像 %>
+    <%= image_tag(@blog.image.url , :size =>'320x320') if @blog.image.url %>
+    <%= form.file_field :image %>
   </div>
 <%= form.submit name="送信する" %>
 <% end %>
