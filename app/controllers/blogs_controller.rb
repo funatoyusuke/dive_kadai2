@@ -22,7 +22,7 @@ class BlogsController < ApplicationController
         redirect_to '/blogs/new'
        end
     end
-    
+
     def create
         @blog = Blog.create(blog_params)
         @blog.user_id = current_user.id
@@ -60,7 +60,8 @@ class BlogsController < ApplicationController
     
     private
     def blog_params
-        params.require(:blog).permit(:title, :content, :image, :image_cache)
+        #params.require(:blog).permit(:title, :content, :image, :image_cache)
+        params.require(:blog).permit(:title, :content)
     end
     
     def set_blog
